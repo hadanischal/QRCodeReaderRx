@@ -4,19 +4,21 @@
 target 'QRCodeReaderRx' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for QRCodeReaderRx
-pod 'SwiftLint'
-pod 'QRCodeReader.swift', '~> 10.1.0'
+  pod 'SwiftLint'
+  pod 'QRCodeReader.swift', '~> 10.1.0'
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
 
   target 'QRCodeReaderRxTests' do
     inherit! :search_paths
     # Pods for testing
   end
-
+  
   target 'QRCodeReaderRxUITests' do
     inherit! :search_paths
     # Pods for testing
   end
-
+  
 end
