@@ -19,6 +19,9 @@
 		AF39432622ED6E6F0015EBDD /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39431C22ED6E6F0015EBDD /* WebService.swift */; };
 		AF39433222ED6FD10015EBDD /* QRCodeReaderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39433122ED6FD10015EBDD /* QRCodeReaderHandler.swift */; };
 		AF39433422ED6FF10015EBDD /* QRCodeReaderHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39433322ED6FF10015EBDD /* QRCodeReaderHandlerProtocol.swift */; };
+		AF39433922ED70F50015EBDD /* AVFoundationHelperProtocolRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39433822ED70F50015EBDD /* AVFoundationHelperProtocolRx.swift */; };
+		AF39433B22ED71030015EBDD /* AVFoundationHelperRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39433A22ED71030015EBDD /* AVFoundationHelperRx.swift */; };
+		AF39433D22ED71330015EBDD /* CameraStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39433C22ED71330015EBDD /* CameraStatus.swift */; };
 		AF964DFE22EC59CD00F70290 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964DFD22EC59CD00F70290 /* AppDelegate.swift */; };
 		AF964E0322EC59CD00F70290 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF964E0122EC59CD00F70290 /* Main.storyboard */; };
 		AF964E0622EC59CD00F70290 /* QRCodeReaderRx.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF964E0422EC59CD00F70290 /* QRCodeReaderRx.xcdatamodeld */; };
@@ -61,6 +64,9 @@
 		AF39431C22ED6E6F0015EBDD /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		AF39433122ED6FD10015EBDD /* QRCodeReaderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderHandler.swift; sourceTree = "<group>"; };
 		AF39433322ED6FF10015EBDD /* QRCodeReaderHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderHandlerProtocol.swift; sourceTree = "<group>"; };
+		AF39433822ED70F50015EBDD /* AVFoundationHelperProtocolRx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFoundationHelperProtocolRx.swift; sourceTree = "<group>"; };
+		AF39433A22ED71030015EBDD /* AVFoundationHelperRx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFoundationHelperRx.swift; sourceTree = "<group>"; };
+		AF39433C22ED71330015EBDD /* CameraStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraStatus.swift; sourceTree = "<group>"; };
 		AF964DFA22EC59CD00F70290 /* QRCodeReaderRx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCodeReaderRx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF964DFD22EC59CD00F70290 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF964E0222EC59CD00F70290 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -225,6 +231,9 @@
 		AF39433522ED707F0015EBDD /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				AF39433822ED70F50015EBDD /* AVFoundationHelperProtocolRx.swift */,
+				AF39433A22ED71030015EBDD /* AVFoundationHelperRx.swift */,
+				AF39433C22ED71330015EBDD /* CameraStatus.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -508,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF39433922ED70F50015EBDD /* AVFoundationHelperProtocolRx.swift in Sources */,
 				AF39432222ED6E6F0015EBDD /* Result.swift in Sources */,
 				AF39431022ED65460015EBDD /* QRCodeLoginViewModel.swift in Sources */,
 				AF39432422ED6E6F0015EBDD /* NetworkingError.swift in Sources */,
@@ -518,8 +528,10 @@
 				AF39432522ED6E6F0015EBDD /* WebServiceProtocol.swift in Sources */,
 				AF39433222ED6FD10015EBDD /* QRCodeReaderHandler.swift in Sources */,
 				AF39431222ED655C0015EBDD /* QRCodeLoginViewController.swift in Sources */,
+				AF39433B22ED71030015EBDD /* AVFoundationHelperRx.swift in Sources */,
 				AF39432622ED6E6F0015EBDD /* WebService.swift in Sources */,
 				AF39431422ED65700015EBDD /* QRCodeLoginModel.swift in Sources */,
+				AF39433D22ED71330015EBDD /* CameraStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
