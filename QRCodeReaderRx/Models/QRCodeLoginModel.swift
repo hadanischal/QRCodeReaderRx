@@ -7,3 +7,13 @@
 //
 
 import Foundation
+import RxSwift
+
+class QRCodeLoginModel: QRCodeLoginModelProtocol {
+    init() {
+    }
+    func login(withToken token: String) -> Completable {
+        //TODO:- Mocking model for now
+        return Completable.empty()
+    }
+}
