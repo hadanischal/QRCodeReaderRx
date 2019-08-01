@@ -9,11 +9,11 @@
 import Foundation
 
 class QRCodeReaderHandler: QRCodeReaderHandlerProtocol {
-    
+
     private let webService: WebServiceProtocol!
-    
+
     init(withWebservice webService: WebServiceProtocol = WebService()) {
         self.webService = webService
     }
-    
+
 }
