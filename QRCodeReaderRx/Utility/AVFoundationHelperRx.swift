@@ -10,9 +10,9 @@ import RxSwift
 import AVFoundation
 
 class AVFoundationHelperRx: AVFoundationHelperProtocolRx {
-    
+
     // MARK: - Check and Respond to Camera Authorization Status
-    
+
     var authorizationStatus: Single<CameraStatus> {
         return Single<CameraStatus>.create { single in
             let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
@@ -31,9 +31,9 @@ class AVFoundationHelperRx: AVFoundationHelperProtocolRx {
             return Disposables.create()
         }
     }
-    
+
     // MARK: - Request Camera Permission
-    
+
     var requestAccess: Single<Bool> {
         return Single<Bool>.create { single in
             AVCaptureDevice.requestAccess(for: .video, completionHandler: {accessGranted in

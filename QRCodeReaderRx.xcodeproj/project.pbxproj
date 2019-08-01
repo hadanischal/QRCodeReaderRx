@@ -22,6 +22,8 @@
 		AF39433922ED70F50015EBDD /* AVFoundationHelperProtocolRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39433822ED70F50015EBDD /* AVFoundationHelperProtocolRx.swift */; };
 		AF39433B22ED71030015EBDD /* AVFoundationHelperRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39433A22ED71030015EBDD /* AVFoundationHelperRx.swift */; };
 		AF39433D22ED71330015EBDD /* CameraStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39433C22ED71330015EBDD /* CameraStatus.swift */; };
+		AF9590C622F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9590C522F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift */; };
+		AF9590CD22F3214F00F0E16E /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9590CC22F3214E00F0E16E /* GeneratedMocks.swift */; };
 		AF964DFE22EC59CD00F70290 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964DFD22EC59CD00F70290 /* AppDelegate.swift */; };
 		AF964E0322EC59CD00F70290 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF964E0122EC59CD00F70290 /* Main.storyboard */; };
 		AF964E0622EC59CD00F70290 /* QRCodeReaderRx.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF964E0422EC59CD00F70290 /* QRCodeReaderRx.xcdatamodeld */; };
@@ -69,6 +71,9 @@
 		AF39433822ED70F50015EBDD /* AVFoundationHelperProtocolRx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFoundationHelperProtocolRx.swift; sourceTree = "<group>"; };
 		AF39433A22ED71030015EBDD /* AVFoundationHelperRx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFoundationHelperRx.swift; sourceTree = "<group>"; };
 		AF39433C22ED71330015EBDD /* CameraStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraStatus.swift; sourceTree = "<group>"; };
+		AF9590C522F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeLoginViewModelTests.swift; sourceTree = "<group>"; };
+		AF9590C722F31E0200F0E16E /* Cuckoo-GeneratedMocks.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "Cuckoo-GeneratedMocks.sh"; sourceTree = "<group>"; };
+		AF9590CC22F3214E00F0E16E /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		AF964DFA22EC59CD00F70290 /* QRCodeReaderRx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCodeReaderRx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF964DFD22EC59CD00F70290 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF964E0222EC59CD00F70290 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -242,10 +247,19 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		AF9590C922F31FD300F0E16E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				AF9590CC22F3214E00F0E16E /* GeneratedMocks.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		AF964DF122EC59CD00F70290 = {
 			isa = PBXGroup;
 			children = (
 				AF964E2E22EC5BBD00F70290 /* .swiftlint.yml */,
+				AF9590C722F31E0200F0E16E /* Cuckoo-GeneratedMocks.sh */,
 				AF964DFC22EC59CD00F70290 /* QRCodeReaderRx */,
 				AF964E1422EC59D000F70290 /* QRCodeReaderRxTests */,
 				AF964E1F22EC59D000F70290 /* QRCodeReaderRxUITests */,
@@ -286,6 +300,8 @@
 		AF964E1422EC59D000F70290 /* QRCodeReaderRxTests */ = {
 			isa = PBXGroup;
 			children = (
+				AF9590C922F31FD300F0E16E /* Mocks */,
+				AF9590C522F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift */,
 				AF964E1522EC59D000F70290 /* QRCodeReaderRxTests.swift */,
 				AF964E1722EC59D000F70290 /* Info.plist */,
 			);
@@ -331,6 +347,7 @@
 				AF964E0D22EC59D000F70290 /* Sources */,
 				AF964E0E22EC59D000F70290 /* Frameworks */,
 				AF964E0F22EC59D000F70290 /* Resources */,
+				AFEBC53990EB3A408C273928 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -499,6 +516,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AFEBC53990EB3A408C273928 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QRCodeReaderRxTests/Pods-QRCodeReaderRxTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QRCodeReaderRxTests/Pods-QRCodeReaderRxTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QRCodeReaderRxTests/Pods-QRCodeReaderRxTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D14A3665BA4BFC3C58273C37 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -547,6 +581,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF9590C622F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift in Sources */,
+				AF9590CD22F3214F00F0E16E /* GeneratedMocks.swift in Sources */,
 				AF964E1622EC59D000F70290 /* QRCodeReaderRxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
