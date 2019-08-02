@@ -6,8 +6,8 @@
 //  Copyright © 2019 NischalHada. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 protocol QRCodeReaderHandlerProtocol {
-
+    func upload(withToken token: String) -> Completable
 }

@@ -24,6 +24,7 @@
 		AF39433D22ED71330015EBDD /* CameraStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39433C22ED71330015EBDD /* CameraStatus.swift */; };
 		AF9590C622F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9590C522F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift */; };
 		AF9590CD22F3214F00F0E16E /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9590CC22F3214E00F0E16E /* GeneratedMocks.swift */; };
+		AF9590D522F3248300F0E16E /* QRCodeLoginModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9590D422F3248300F0E16E /* QRCodeLoginModelTests.swift */; };
 		AF964DFE22EC59CD00F70290 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964DFD22EC59CD00F70290 /* AppDelegate.swift */; };
 		AF964E0322EC59CD00F70290 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF964E0122EC59CD00F70290 /* Main.storyboard */; };
 		AF964E0622EC59CD00F70290 /* QRCodeReaderRx.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF964E0422EC59CD00F70290 /* QRCodeReaderRx.xcdatamodeld */; };
@@ -74,6 +75,7 @@
 		AF9590C522F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeLoginViewModelTests.swift; sourceTree = "<group>"; };
 		AF9590C722F31E0200F0E16E /* Cuckoo-GeneratedMocks.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "Cuckoo-GeneratedMocks.sh"; sourceTree = "<group>"; };
 		AF9590CC22F3214E00F0E16E /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		AF9590D422F3248300F0E16E /* QRCodeLoginModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeLoginModelTests.swift; sourceTree = "<group>"; };
 		AF964DFA22EC59CD00F70290 /* QRCodeReaderRx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCodeReaderRx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF964DFD22EC59CD00F70290 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF964E0222EC59CD00F70290 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			children = (
 				AF9590C922F31FD300F0E16E /* Mocks */,
 				AF9590C522F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift */,
+				AF9590D422F3248300F0E16E /* QRCodeLoginModelTests.swift */,
 				AF964E1522EC59D000F70290 /* QRCodeReaderRxTests.swift */,
 				AF964E1722EC59D000F70290 /* Info.plist */,
 			);
@@ -582,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF9590C622F31D3F00F0E16E /* QRCodeLoginViewModelTests.swift in Sources */,
+				AF9590D522F3248300F0E16E /* QRCodeLoginModelTests.swift in Sources */,
 				AF9590CD22F3214F00F0E16E /* GeneratedMocks.swift in Sources */,
 				AF964E1622EC59D000F70290 /* QRCodeReaderRxTests.swift in Sources */,
 			);

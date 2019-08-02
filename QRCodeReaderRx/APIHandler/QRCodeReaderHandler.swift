@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class QRCodeReaderHandler: QRCodeReaderHandlerProtocol {
 
@@ -14,6 +16,11 @@ class QRCodeReaderHandler: QRCodeReaderHandlerProtocol {
 
     init(withWebservice webService: WebServiceProtocol = WebService()) {
         self.webService = webService
+    }
+    
+    func upload(withToken token: String) -> Completable {
+        ///TODO: api handell
+        return Completable.empty()
     }
 
 }

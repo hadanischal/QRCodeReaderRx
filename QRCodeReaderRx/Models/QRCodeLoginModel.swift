@@ -10,10 +10,12 @@ import Foundation
 import RxSwift
 
 class QRCodeLoginModel: QRCodeLoginModelProtocol {
-    init() {
+    private let serverHandler: QRCodeReaderHandlerProtocol!
+    
+    init(withHandler serverHandler: QRCodeReaderHandlerProtocol = QRCodeReaderHandler()) {
+        self.serverHandler = serverHandler
     }
     func login(withToken token: String) -> Completable {
-        //TODO:- Mocking model for now
-        return Completable.empty()
+        return serverHandler.upload(withToken: token)
     }
 }
