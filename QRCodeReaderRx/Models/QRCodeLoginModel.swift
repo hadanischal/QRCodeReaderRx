@@ -11,7 +11,7 @@ import RxSwift
 
 class QRCodeLoginModel: QRCodeLoginModelProtocol {
     private let serverHandler: QRCodeReaderHandlerProtocol!
-    
+
     init(withHandler serverHandler: QRCodeReaderHandlerProtocol = QRCodeReaderHandler()) {
         self.serverHandler = serverHandler
     }

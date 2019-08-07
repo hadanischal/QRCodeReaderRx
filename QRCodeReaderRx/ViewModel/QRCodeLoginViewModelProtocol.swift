@@ -12,7 +12,9 @@ import RxCocoa
 enum QRCodeLoginRoute {
     case showQRCodeReader
     case alertCameraAccessNeeded
-    case shouldProceed
+    case linkComplete
+    case failedLinkedAlert // ceaseSpinner in failed
+    case displaySpinner
 }
 
 protocol QRCodeLoginViewModelProtocol {

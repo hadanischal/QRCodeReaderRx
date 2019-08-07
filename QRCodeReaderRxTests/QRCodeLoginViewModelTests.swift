@@ -150,8 +150,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
 
             })
 
-            ///TODO: More functionality to add, will update test accordingly
-            context("when QRCode is scanned successfully i.e implement handelLinkToken", {
+            context("Link request is made when QRCode is scanned successfully", {
                 var notapInput: Observable<Void>!
                 var tokenInput: Observable<String>!
 
@@ -160,7 +159,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                     tokenInput = testScheduler.createColdObservable([Recorded.next(300, "testToken")]).asObservable()
                 }
 
-                describe("when authorizationStatus is authorized ", {
+                describe("when a link is successfuly requested", {
                     beforeEach {
                         stub(mockModel, block: { (stub) in
                             when(stub.login(withToken: any())).thenReturn(Completable.empty())
@@ -169,11 +168,42 @@ class QRCodeLoginViewModelTests: QuickSpec {
 
                     it("calls model with link token", closure: {
                         let testObservable = testViewModel.transformInput(linkButtonTaps: notapInput, token: tokenInput).asObservable()
-                        _ = testScheduler.start { testObservable }
+                        let res = testScheduler.start { testObservable }
                         verify(mockModel).login(withToken: any())
+                        expect(res.events.count).to(equal(2))
+                        let correctResult = [Recorded.next(300, QRCodeLoginRoute.displaySpinner),
+                                             Recorded.next(300, QRCodeLoginRoute.linkComplete)]
+                        XCTAssertEqual(res.events, correctResult)
                     })
-                })
+
+                    it("calls model with link token", closure: {
+                        let testObservable = testViewModel.transformInput(linkButtonTaps: notapInput, token: tokenInput).asObservable()
+                        _ = testScheduler.start { testObservable }
+                        verify(mockModel).login(withToken: "testToken")
+                    })
+
+                 })
+
+                describe("when a link request fails", {
+                    beforeEach {
+                        stub(mockModel, block: { (stub) in
+                            when(stub.login(withToken: any())).thenReturn(Completable.error(RxError.unknown))
+                        })
+                    }
+
+                    it("calls model with link token", closure: {
+                        let testObservable = testViewModel.transformInput(linkButtonTaps: notapInput, token: tokenInput).asObservable()
+                        let res = testScheduler.start { testObservable }
+                        verify(mockModel).login(withToken: any())
+                        expect(res.events.count).to(equal(2))
+                        let correctResult = [Recorded.next(300, QRCodeLoginRoute.displaySpinner),
+                                             Recorded.next(300, QRCodeLoginRoute.failedLinkedAlert)]
+                        XCTAssertEqual(res.events, correctResult)
+                    })
+
+                 })
             })
+
         }
     }
 
