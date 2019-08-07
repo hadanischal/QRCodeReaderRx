@@ -42,9 +42,18 @@ class QRCodeLoginViewModel: QRCodeLoginViewModelProtocol {
 
     private func handelLinkToken(_ token: String) {
         print("Received token VM\(token)")
-        //TODO: we will communicate with model for this part in next
-        //TODO: Mocking for temporary purpose
-        model.login(withToken: token).subscribe().disposed(by: disposeBag)
+        self.routeSubject.on(.next(QRCodeLoginRoute.displaySpinner))
+        model.login(withToken: token)
+            .subscribe(onCompleted: { [weak self] in
+                print("Completed with no error")
+                self?.routeSubject.on(.next(QRCodeLoginRoute.linkComplete))
+
+                }, onError: { [weak self] error in
+                    let message = "Completed with an error: \(error.localizedDescription)"
+                    print(message)
+                    self?.routeSubject.onNext(QRCodeLoginRoute.failedLinkedAlert)
+            })
+            .disposed(by: disposeBag)
     }
 
     private func handelLinkButtonTaps() {
