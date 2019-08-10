@@ -15,6 +15,9 @@ import QRCodeReader
 class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDelegate {
 
     @IBOutlet weak var btnScan: UIButton!
+
+    var viewModel: QRCodeLoginViewModelProtocol = QRCodeLoginViewModel()
+    private let tokenSubject = PublishSubject<String>()
     private let disposeBag = DisposeBag()
 
     // create the reader lazily to avoid cpu overload during the
@@ -36,14 +39,43 @@ class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.btnScan.rx.tap.subscribe(onNext: { [weak self] _ in
-            self?.showQRCodeReader()
-        }).disposed(by: disposeBag)
-
+        self.setupViewModel()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
+    }
+
+    func setupViewModel() {
+
+        let taps = btnScan.rx.tap.asObservable()
+        var token: Observable<String> {
+            return tokenSubject.asObservable()
+        }
+
+        viewModel.transformInput(linkButtonTaps: taps, token: token)
+            .drive(onNext: { [weak self] result in
+                self?.navigate(withRoute: result)
+            })
+            .disposed(by: disposeBag)
+
+    }
+
+    // MARK: - Navigation
+
+    private func navigate(withRoute route: QRCodeLoginRoute) {
+        switch route {
+        case .showQRCodeReader:
+            self.showQRCodeReader()
+        case .alertCameraAccessNeeded:
+            self.alertCameraAccessNeeded()
+        case .linkComplete:
+            self.linkingSucceed()
+        case .failedLinkedAlert:
+            self.linkingFailed()
+        case .displaySpinner:
+            self.displaySpinner()
+        }
     }
 
     // MARK: - QRCodeReaderDelegate
@@ -61,6 +93,7 @@ class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDel
         reader.stopScanning()
         dismiss(animated: true) { [weak self] in
             print("Completion with result : \(result.value) of type \(result.metadataType)")
+            self?.tokenSubject.on(.next(result.value))
         }
     }
 
@@ -71,6 +104,42 @@ class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDel
     func readerDidCancel(_ reader: QRCodeReaderViewController) {
         reader.stopScanning()
         dismiss(animated: true, completion: nil)
+    }
+
+    // MARK: - Alert Camera Access Needed
+    // TODO: Manage Alert properly
+
+    private func alertCameraAccessNeeded() {
+        let settingsAppURL = URL(string: UIApplication.openSettingsURLString)!
+        self.alert(title: "Allow Camera Access",
+                   message: "Required Camera access to scan QRCode",
+                   actions: [AlertAction(title: "OK", type: 0, style: .default),
+                             AlertAction(title: "Cancel", type: 1, style: .destructive)],
+                   vc: self).observeOn(MainScheduler.instance)
+            .subscribe(onNext: { index in
+                print ("index: \(index)")
+                if index == 0 {
+                    UIApplication.shared.open(settingsAppURL)
+                }
+                self.dismiss(animated: true)
+            }).disposed(by: disposeBag)
+    }
+
+    // MARK: - Linking Failed
+    private func linkingFailed() {
+        //self.ceaseSpinning
+            self.showAlertView(withTitle: "Linking Failed", andMessage: "Completed with an error linking Failed")
+     }
+
+    // MARK: - Linking Succeed
+    private func linkingSucceed() {
+        // TODO: ceaseSpinning
+        // TODO: push to new view
+    }
+
+    // MARK: - Handling server interactions. Spinners and screen disablement
+    private func displaySpinner() {
+        // TODO: displaySpinner
     }
 
 }
