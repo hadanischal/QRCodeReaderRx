@@ -11,10 +11,12 @@ import RxSwift
 import RxCocoa
 import AVFoundation
 import QRCodeReader
+import WebKit
 
 class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDelegate {
 
     @IBOutlet weak var btnScan: UIButton!
+    @IBOutlet weak var webView: WKWebView!
 
     var viewModel: QRCodeLoginViewModelProtocol = QRCodeLoginViewModel()
     private let tokenSubject = PublishSubject<String>()
@@ -39,7 +41,15 @@ class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Scan QRCode"
         self.setupViewModel()
+        self.setupWebView()
+        self.setAccessibilityIdentifier()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.displayWebView()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -111,9 +121,10 @@ class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDel
 
     private func alertCameraAccessNeeded() {
         let settingsAppURL = URL(string: UIApplication.openSettingsURLString)!
-        self.alert(title: "Allow Camera Access",
-                   message: "Required Camera access to scan QRCode",
-                   actions: [AlertAction(title: "OK", type: 0, style: .default),
+        let appName = Bundle.main.displayName ?? "This app"
+        self.alert(title: "This feature requires Camera Access",
+                   message: "In iPhone settings, tap \(appName) and turn on Camera access to scan QRCode",
+                   actions: [AlertAction(title: "Settings", type: 0, style: .default),
                              AlertAction(title: "Cancel", type: 1, style: .destructive)],
                    vc: self).observeOn(MainScheduler.instance)
             .subscribe(onNext: { index in
@@ -142,4 +153,44 @@ class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDel
         // TODO: displaySpinner
     }
 
+    private func setAccessibilityIdentifier() {
+        navigationController?.navigationBar.accessibilityIdentifier = "QRCodeLoginViewController"
+        btnScan.accessibilityIdentifier = "Scan"
+        webView.accessibilityIdentifier = "webView"
+    }
+
+}
+
+extension QRCodeLoginViewController: WKUIDelegate, WKNavigationDelegate {
+    // MARK: - Navigation
+    private func setupWebView() {
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+    }
+
+    private func displayWebView() {
+        if let url = Bundle.main.url(forResource: "instruction", withExtension: "html") {
+            webView.loadFileURL(url, allowingReadAccessTo: url)
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+    }
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        switch navigationAction.navigationType {
+        case .linkActivated:
+            // Open links in Safari
+            if let url = navigationAction.request.url,
+                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+                decisionHandler(.cancel)
+            } else {
+                //Open it locally
+                decisionHandler(.allow)
+            }
+        default:
+            //not a user click
+            decisionHandler(.allow)
+        }
+    }
 }

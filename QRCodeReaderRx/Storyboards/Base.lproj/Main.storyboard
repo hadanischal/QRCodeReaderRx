@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpv-bX-PBc">
-                                <rect key="frame" x="41.5" y="652" width="331" height="60"/>
+                                <rect key="frame" x="41.5" y="702" width="331" height="60"/>
                                 <color key="backgroundColor" red="0.066608794033527374" green="0.26978111267089844" blue="0.8610878586769104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="GAs-XD-ZqX"/>
@@ -28,12 +28,29 @@
                                 <state key="normal" title="Scan">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhw-8g-Mwu">
+                                <rect key="frame" x="10" y="0.0" width="394" height="702"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
-                        <color key="backgroundColor" red="0.033930163830518723" green="0.096073336899280548" blue="0.455028235912323" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dpv-bX-PBc" secondAttribute="bottom" constant="150" id="Iob-a8-hS6"/>
+                            <constraint firstItem="jhw-8g-Mwu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="3BF-oo-1qb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dpv-bX-PBc" secondAttribute="bottom" constant="100" id="Iob-a8-hS6"/>
+                            <constraint firstItem="jhw-8g-Mwu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OeW-o0-u6J"/>
+                            <constraint firstItem="dpv-bX-PBc" firstAttribute="top" secondItem="jhw-8g-Mwu" secondAttribute="bottom" id="SBq-yg-EAF"/>
                             <constraint firstItem="dpv-bX-PBc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fcU-we-KaA"/>
+                            <constraint firstAttribute="trailing" secondItem="jhw-8g-Mwu" secondAttribute="trailing" constant="10" id="jMQ-Ag-5If"/>
                             <constraint firstItem="dpv-bX-PBc" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="msH-yl-zGA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -41,11 +58,12 @@
                     <navigationItem key="navigationItem" id="igX-qA-ffk"/>
                     <connections>
                         <outlet property="btnScan" destination="dpv-bX-PBc" id="ZB8-q3-bOa"/>
+                        <outlet property="webView" destination="jhw-8g-Mwu" id="h4s-EC-PIq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1126" y="757"/>
+            <point key="canvasLocation" x="1124.6376811594205" y="756.69642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="USZ-P0-BSp">
