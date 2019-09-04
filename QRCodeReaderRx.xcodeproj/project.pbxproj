@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0425F225230BE70400D7A44D /* TestingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425F224230BE70400D7A44D /* TestingScreen.swift */; };
+		0425F227230BE73800D7A44D /* TestingBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425F226230BE73800D7A44D /* TestingBase.swift */; };
 		046F7C1022FAF29D00860B62 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F7C0F22FAF29D00860B62 /* UIViewControllerExtension.swift */; };
 		046F7C1322FAF44800860B62 /* ManualMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F7C1222FAF44800860B62 /* ManualMocks.swift */; };
 		046F7C1722FAF8B900860B62 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F7C1622FAF8B900860B62 /* UIAlertControllerExtension.swift */; };
 		046F7C1922FAF91B00860B62 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F7C1822FAF91B00860B62 /* AlertAction.swift */; };
-		04B6B566230028D000223781 /* QRCodeLoginViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6B565230028D000223781 /* QRCodeLoginViewControllerUITests.swift */; };
 		04B6B56923003BD700223781 /* QRCodeLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6B56823003BD700223781 /* QRCodeLoginScreen.swift */; };
 		04D1C9AE23096DDC006FD8F7 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1C9AD23096DDC006FD8F7 /* BundleExtension.swift */; };
 		04D1C9B023097058006FD8F7 /* instruction.html in Resources */ = {isa = PBXBuildFile; fileRef = 04D1C9AF23097058006FD8F7 /* instruction.html */; };
@@ -65,11 +66,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0425F224230BE70400D7A44D /* TestingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingScreen.swift; sourceTree = "<group>"; };
+		0425F226230BE73800D7A44D /* TestingBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingBase.swift; sourceTree = "<group>"; };
 		046F7C0F22FAF29D00860B62 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		046F7C1222FAF44800860B62 /* ManualMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualMocks.swift; sourceTree = "<group>"; };
 		046F7C1622FAF8B900860B62 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		046F7C1822FAF91B00860B62 /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
-		04B6B565230028D000223781 /* QRCodeLoginViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeLoginViewControllerUITests.swift; sourceTree = "<group>"; };
 		04B6B56823003BD700223781 /* QRCodeLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeLoginScreen.swift; sourceTree = "<group>"; };
 		04D1C9AD23096DDC006FD8F7 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		04D1C9AF23097058006FD8F7 /* instruction.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = instruction.html; sourceTree = "<group>"; };
@@ -356,8 +358,9 @@
 		AF964E1F22EC59D000F70290 /* QRCodeReaderRxUITests */ = {
 			isa = PBXGroup;
 			children = (
+				0425F224230BE70400D7A44D /* TestingScreen.swift */,
+				0425F226230BE73800D7A44D /* TestingBase.swift */,
 				04B6B56723003BA500223781 /* Screens */,
-				04B6B565230028D000223781 /* QRCodeLoginViewControllerUITests.swift */,
 				AF964E2022EC59D000F70290 /* QRCodeReaderRxUITests.swift */,
 				AF964E2222EC59D000F70290 /* Info.plist */,
 			);
@@ -376,6 +379,7 @@
 				AF964DF722EC59CD00F70290 /* Frameworks */,
 				AF964DF822EC59CD00F70290 /* Resources */,
 				D14A3665BA4BFC3C58273C37 /* [CP] Embed Pods Frameworks */,
+				04301DE6231FDA5D0045D2EE /* Run SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -415,6 +419,7 @@
 				AF964E1922EC59D000F70290 /* Frameworks */,
 				AF964E1A22EC59D000F70290 /* Resources */,
 				04B6B5642300269500223781 /* ShellScript */,
+				A3668E85523DD70112FE6D06 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -499,6 +504,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		04301DE6231FDA5D0045D2EE /* Run SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		04B6B5642300269500223781 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -582,6 +605,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A3668E85523DD70112FE6D06 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QRCodeReaderRxUITests/Pods-QRCodeReaderRxUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QRCodeReaderRxUITests/Pods-QRCodeReaderRxUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QRCodeReaderRxUITests/Pods-QRCodeReaderRxUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AFEBC53990EB3A408C273928 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -663,7 +703,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04B6B566230028D000223781 /* QRCodeLoginViewControllerUITests.swift in Sources */,
+				0425F225230BE70400D7A44D /* TestingScreen.swift in Sources */,
+				0425F227230BE73800D7A44D /* TestingBase.swift in Sources */,
 				AF964E2122EC59D000F70290 /* QRCodeReaderRxUITests.swift in Sources */,
 				04B6B56923003BD700223781 /* QRCodeLoginScreen.swift in Sources */,
 			);

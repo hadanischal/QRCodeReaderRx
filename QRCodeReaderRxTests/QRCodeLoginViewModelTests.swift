@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import QRCodeReaderRx
 import Quick
 import Nimble
 import Cuckoo
@@ -15,6 +14,7 @@ import RxCocoa
 import RxTest
 import RxBlocking
 import RxSwift
+@testable import QRCodeReaderRx
 
 class QRCodeLoginViewModelTests: QuickSpec {
 

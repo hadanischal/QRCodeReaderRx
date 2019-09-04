@@ -5,4 +5,15 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
 - Carthage
 - Pods
 - QRCodeReaderRxTests/Mocks/GeneratedMocks.swift
+- QRCodeReaderRxTests/
 
+line_length: 110
+# they can set both implicitly with an array
+type_body_length:
+    - 300 # warning
+    - 400 # error
+
+# or they can set both explicitly
+function_body_length:
+    - warning: 40
+    - error: 800

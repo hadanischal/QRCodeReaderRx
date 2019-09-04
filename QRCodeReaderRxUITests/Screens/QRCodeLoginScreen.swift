@@ -10,6 +10,8 @@ import XCTest
 
 class QRCodeLoginScreen: XCTest {
 
+    lazy var screen = XCUIApplication().otherElements.containing(.navigationBar, identifier: "QRCodeLoginViewController")
+
     let scanButton = XCUIApplication().buttons["Scan"]
     let cameraAccessAlert = XCUIApplication().alerts["Allow Camera Access"].buttons["OK"]
 
@@ -22,8 +24,12 @@ class QRCodeLoginScreen: XCTest {
     let displaySpinnerButton = XCUIApplication().buttons["displaySpinner"]
     let ceaseSpinningButton = XCUIApplication().buttons["ceaseSpinningButton"]
 
-    // MARK: Settings Screen tap 
-
+    // MARK: Settings Screen tap
+    @discardableResult
+    func navigateTo() -> Self {
+        return self
+    }
+    
     func showQRCodeReader() {
         scanButton.tap()
         cameraAccessAlert.tap()
