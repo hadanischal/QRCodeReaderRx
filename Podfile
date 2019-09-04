@@ -25,6 +25,7 @@ target 'QRCodeReaderRx' do
   target 'QRCodeReaderRxUITests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Nimble', '~> 8'
   end
   
 end
