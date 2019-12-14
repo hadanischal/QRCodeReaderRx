@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0425F225230BE70400D7A44D /* TestingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425F224230BE70400D7A44D /* TestingScreen.swift */; };
 		0425F227230BE73800D7A44D /* TestingBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425F226230BE73800D7A44D /* TestingBase.swift */; };
+		046E202323A463FC001A9C13 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E202023A463FC001A9C13 /* UIAlertControllerExtension.swift */; };
+		046E202423A463FC001A9C13 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E202123A463FC001A9C13 /* UIViewControllerExtension.swift */; };
+		046E202523A463FC001A9C13 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E202223A463FC001A9C13 /* BundleExtension.swift */; };
 		046F7C1022FAF29D00860B62 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F7C0F22FAF29D00860B62 /* UIViewControllerExtension.swift */; };
 		046F7C1322FAF44800860B62 /* ManualMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F7C1222FAF44800860B62 /* ManualMocks.swift */; };
 		046F7C1722FAF8B900860B62 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F7C1622FAF8B900860B62 /* UIAlertControllerExtension.swift */; };
@@ -68,6 +71,9 @@
 /* Begin PBXFileReference section */
 		0425F224230BE70400D7A44D /* TestingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingScreen.swift; sourceTree = "<group>"; };
 		0425F226230BE73800D7A44D /* TestingBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingBase.swift; sourceTree = "<group>"; };
+		046E202023A463FC001A9C13 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
+		046E202123A463FC001A9C13 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		046E202223A463FC001A9C13 /* BundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		046F7C0F22FAF29D00860B62 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		046F7C1222FAF44800860B62 /* ManualMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualMocks.swift; sourceTree = "<group>"; };
 		046F7C1622FAF8B900860B62 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
@@ -149,6 +155,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		046E201F23A463FC001A9C13 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				046E202023A463FC001A9C13 /* UIAlertControllerExtension.swift */,
+				046E202123A463FC001A9C13 /* UIViewControllerExtension.swift */,
+				046E202223A463FC001A9C13 /* BundleExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		046F7C1122FAF2AF00860B62 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +300,7 @@
 		AF39433522ED707F0015EBDD /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				046E201F23A463FC001A9C13 /* Extension */,
 				AF39433822ED70F50015EBDD /* AVFoundationHelperProtocolRx.swift */,
 				AF39433A22ED71030015EBDD /* AVFoundationHelperRx.swift */,
 				AF39433C22ED71330015EBDD /* CameraStatus.swift */,
@@ -670,6 +687,7 @@
 				AF39432422ED6E6F0015EBDD /* NetworkingError.swift in Sources */,
 				AF39433422ED6FF10015EBDD /* QRCodeReaderHandlerProtocol.swift in Sources */,
 				AF964DFE22EC59CD00F70290 /* AppDelegate.swift in Sources */,
+				046E202423A463FC001A9C13 /* UIViewControllerExtension.swift in Sources */,
 				AF39432322ED6E6F0015EBDD /* ErrorResult.swift in Sources */,
 				AF964E0622EC59CD00F70290 /* QRCodeReaderRx.xcdatamodeld in Sources */,
 				AF9DA28522F0518100DFBDB8 /* QRCodeLoginModelProtocol.swift in Sources */,
@@ -681,9 +699,11 @@
 				AF39431222ED655C0015EBDD /* QRCodeLoginViewController.swift in Sources */,
 				AF39433B22ED71030015EBDD /* AVFoundationHelperRx.swift in Sources */,
 				04D1C9AE23096DDC006FD8F7 /* BundleExtension.swift in Sources */,
+				046E202323A463FC001A9C13 /* UIAlertControllerExtension.swift in Sources */,
 				AF39432622ED6E6F0015EBDD /* WebService.swift in Sources */,
 				AF39431422ED65700015EBDD /* QRCodeLoginModel.swift in Sources */,
 				AF39433D22ED71330015EBDD /* CameraStatus.swift in Sources */,
+				046E202523A463FC001A9C13 /* BundleExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
