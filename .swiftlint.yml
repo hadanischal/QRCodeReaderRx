@@ -1,19 +1,41 @@
-opt_in_rules:
-- empty_count
+excluded:
+  - Carthage
+  - Pods/
+  - QRCodeReaderRxTests/Mocks/GeneratedMocks.swift
 
-excluded: # paths to ignore during linting. Takes precedence over `included`.
-- Carthage
-- Pods
-- QRCodeReaderRxTests/Mocks/GeneratedMocks.swift
-- QRCodeReaderRxTests/
+line_length:
+  - 300 # warning
+  - 400 # error
 
-line_length: 110
-# they can set both implicitly with an array
-type_body_length:
-    - 300 # warning
-    - 400 # error
-
-# or they can set both explicitly
 function_body_length:
-    - warning: 40
-    - error: 800
+  - 300 # warning
+  - 400 # error
+
+type_body_length:
+  - 300 # warning
+  - 400 # error
+
+custom_rules:
+  rule_id:
+    included: Source/SwiftLintFramework/Rules/.+/\w+\.swift
+    name: Rule ID
+    message: Rule IDs must be all lowercase, snake case and not end with `rule`
+    regex: identifier:\s*("\w+_rule"|"\S*[^a-z_]\S*")
+    severity: error
+  fatal_error:
+    name: Fatal Error
+    excluded: "Tests/*"
+    message: Prefer using `queuedFatalError` over `fatalError` to avoid leaking compiler host machine paths.
+    regex: \bfatalError\b
+    match_kinds:
+      - identifier
+    severity: error
+  rule_test_function:
+    included: Tests/SwiftLintFrameworkTests/RulesTests.swift
+    name: Rule Test Function
+    message: Rule Test Function mustn't end with `rule`
+    regex: func\s*test\w+(r|R)ule\(\)
+    severity: error
+    
+opt_in_rules:
+  - empty_count
