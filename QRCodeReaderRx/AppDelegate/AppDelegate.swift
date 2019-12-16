@@ -5,6 +5,7 @@
 //  Created by Nischal Hada on 7/27/19.
 //  Copyright © 2019 NischalHada. All rights reserved.
 //
+//swiftlint:disable fatal_error
 
 import UIKit
 import CoreData

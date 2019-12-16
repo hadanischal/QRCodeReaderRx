@@ -9,6 +9,10 @@
 import Foundation
 import RxSwift
 
+protocol QRCodeLoginModelProtocol {
+    func login(withToken token: String) -> Completable
+}
+
 final class QRCodeLoginModel: QRCodeLoginModelProtocol {
     private let serverHandler: QRCodeReaderHandlerProtocol!
 

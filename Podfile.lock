@@ -1,21 +1,25 @@
 PODS:
+  - AVFoundationHelperRx (0.4.0):
+    - RxCocoa (~> 5.0.1)
+    - RxSwift (~> 5.0.1)
   - Cuckoo (1.0.6)
-  - Nimble (8.0.2)
+  - Nimble (8.0.4)
   - QRCodeReader.swift (10.1.0)
   - Quick (2.1.0)
-  - RxBlocking (5.0.0):
+  - RxBlocking (5.0.1):
     - RxSwift (~> 5)
-  - RxCocoa (5.0.0):
+  - RxCocoa (5.0.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxRelay (5.0.0):
+  - RxRelay (5.0.1):
     - RxSwift (~> 5)
-  - RxSwift (5.0.0)
-  - RxTest (5.0.0):
+  - RxSwift (5.0.1)
+  - RxTest (5.0.1):
     - RxSwift (~> 5)
-  - SwiftLint (0.34.0)
+  - SwiftLint (0.38.0)
 
 DEPENDENCIES:
+  - AVFoundationHelperRx (~> 0.4)
   - Cuckoo (~> 1.0.6)
   - Nimble (~> 8)
   - QRCodeReader.swift (~> 10.1.0)
@@ -27,7 +31,8 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
+    - AVFoundationHelperRx
     - Cuckoo
     - Nimble
     - QRCodeReader.swift
@@ -40,17 +45,18 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
+  AVFoundationHelperRx: 8d977d447f4c369d42d55cfeca83f2d9e93a039f
   Cuckoo: 8074fc309159c4862665b83798f5ad03e061e8bd
-  Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
+  Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
   QRCodeReader.swift: 373a389fe9a22d513c879a32a6f647c58f4ef572
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
-  RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
-  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
-  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
-  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
-  RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
-  SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
+  RxBlocking: c5e090f42d046df8b0e7752742510f349963710f
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
+  RxTest: 0132f952a61da82d5233abedaa559df91e5330e5
+  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
 
-PODFILE CHECKSUM: e56f439906d51e2a747a8c29e755fb94d510299a
+PODFILE CHECKSUM: fbe3e8b28989e1e5142e0d07288b582e46155f5d
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4
