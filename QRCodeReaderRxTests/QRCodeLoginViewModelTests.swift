@@ -14,6 +14,7 @@ import RxCocoa
 import RxTest
 import RxBlocking
 import RxSwift
+import AVFoundationHelperRx
 @testable import QRCodeReaderRx
 
 class QRCodeLoginViewModelTests: QuickSpec {
@@ -35,7 +36,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
 
                 mockAVFoundation = MockAVFoundationHelperProtocolRx()
                 stub(mockAVFoundation, block: { (stub) in
-                    when(stub.authorizationStatus).get.thenReturn(Single.just(CameraStatus.authorized))
+                    when(stub.authorizationStatus).get.thenReturn(Single.just(AuthorizationStatus.authorized))
                     when(stub.requestAccess).get.thenReturn(Single.just(true))
                 })
 
@@ -58,7 +59,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
 
                 describe("when authorizationStatus is authorized ", {
                     beforeEach {
-                        let status = testScheduler.createColdObservable([Recorded.next(10, CameraStatus.authorized), Recorded.completed(20)]).asSingle()
+                        let status = testScheduler.createColdObservable([Recorded.next(10, AuthorizationStatus.authorized), Recorded.completed(20)]).asSingle()
                         stub(mockAVFoundation, block: { (stub) in
                             when(stub.authorizationStatus.get).thenReturn(status)
                         })
@@ -75,7 +76,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                 describe("when authorizationStatus is denied ", {
 
                     beforeEach {
-                        let status = testScheduler.createColdObservable([Recorded.next(10, CameraStatus.denied), .completed(20)]).asSingle()
+                        let status = testScheduler.createColdObservable([Recorded.next(10, AuthorizationStatus.denied), .completed(20)]).asSingle()
                         stub(mockAVFoundation, block: { (stub) in
                             when(stub.authorizationStatus.get).thenReturn(status)
                         })
@@ -91,7 +92,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
 
                 describe("when authorizationStatus is restricted ", {
                     beforeEach {
-                        let status = testScheduler.createColdObservable([Recorded.next(10, CameraStatus.restricted), Recorded.completed(20)]).asSingle()
+                        let status = testScheduler.createColdObservable([Recorded.next(10, AuthorizationStatus.restricted), Recorded.completed(20)]).asSingle()
                         stub(mockAVFoundation, block: { (stub) in
                             when(stub.authorizationStatus.get).thenReturn(status)
                         })
@@ -109,7 +110,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                     context("when requestAccess is authorized ", {
                         beforeEach {
 
-                            let status = testScheduler.createColdObservable([Recorded.next(10, CameraStatus.notDetermined), Recorded.completed(20)]).asSingle()
+                            let status = testScheduler.createColdObservable([Recorded.next(10, AuthorizationStatus.notDetermined), Recorded.completed(20)]).asSingle()
                             let isAccess = testScheduler.createColdObservable([Recorded.next(10, true), Recorded.completed(20)]).asSingle()
                             stub(mockAVFoundation, block: { (stub) in
                                 when(stub.authorizationStatus.get).thenReturn(status)
@@ -129,7 +130,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                     context("when requestAccess is denied ", {
                         beforeEach {
 
-                            let status = testScheduler.createColdObservable([Recorded.next(10, CameraStatus.notDetermined), Recorded.completed(20)]).asSingle()
+                            let status = testScheduler.createColdObservable([Recorded.next(10, AuthorizationStatus.notDetermined), Recorded.completed(20)]).asSingle()
                             let isAccess = testScheduler.createColdObservable([Recorded.next(10, false), Recorded.completed(20)]).asSingle()
                             stub(mockAVFoundation, block: { (stub) in
                                 when(stub.authorizationStatus.get).thenReturn(status)
@@ -203,8 +204,6 @@ class QRCodeLoginViewModelTests: QuickSpec {
 
                  })
             })
-
         }
     }
-
 }
