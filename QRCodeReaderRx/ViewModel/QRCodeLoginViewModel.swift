@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import AVFoundationHelperRx
 
-class QRCodeLoginViewModel: QRCodeLoginViewModelProtocol {
+final class QRCodeLoginViewModel: QRCodeLoginViewModelProtocol {
 
     //input
     private let model: QRCodeLoginModelProtocol!
@@ -26,65 +26,56 @@ class QRCodeLoginViewModel: QRCodeLoginViewModelProtocol {
         self.avFoundation = avFoundation
     }
 
-    func transformInput(linkButtonTaps taps: Observable<Void>, token: Observable<String>) -> Driver<QRCodeLoginRoute> {
-        taps
-            .subscribe(onNext: { [weak self] in
-                self?.handelLinkButtonTaps()
-            }).disposed(by: disposeBag)
+    func transformInput(linkButtonTaps taps: Observable<Void>, token: Observable<String>) -> Observable<QRCodeLoginRoute> {
 
-        token
-            .subscribe(onNext: { [weak self] token in
-                self?.handelLinkToken(token)
-            })
-            .disposed(by: disposeBag)
+        let linkButtonTaps =  taps.flatMap { [weak self] _ -> Observable<QRCodeLoginRoute> in
+            return self?.handelLinkButtonTaps() ?? Observable.empty()
+        }
 
-        return routeSubject.asDriver(onErrorJustReturn: QRCodeLoginRoute.alertCameraAccessNeeded)
+        let token = token.flatMap({ [weak self] token -> Observable<QRCodeLoginRoute>  in
+            guard let self = self else { return Observable.empty() }
+            return Observable.concat(Observable.just(.displaySpinner),
+                                     self.handelLinkToken(token))
+        })
+
+        return Observable.merge(linkButtonTaps, token)
     }
 
-    private func handelLinkToken(_ token: String) {
+    private func handelLinkToken(_ token: String) -> Observable<QRCodeLoginRoute> {
         print("Received token VM\(token)")
-        self.routeSubject.on(.next(QRCodeLoginRoute.displaySpinner))
-        model.login(withToken: token)
-            .subscribe(onCompleted: { [weak self] in
-                print("Completed with no error")
-                self?.routeSubject.on(.next(QRCodeLoginRoute.linkComplete))
-
-                }, onError: { [weak self] error in
-                    let message = "Completed with an error: \(error.localizedDescription)"
-                    print(message)
-                    self?.routeSubject.onNext(QRCodeLoginRoute.failedLinkedAlert)
+        return model.login(withToken: token)
+            .flatMap({ _ -> Observable<QRCodeLoginRoute> in
+                return Observable.just(QRCodeLoginRoute.linkComplete)
             })
-            .disposed(by: disposeBag)
+            .catchErrorJustReturn(.failedLinkedAlert)
     }
 
-    private func handelLinkButtonTaps() {
+    private func handelLinkButtonTaps() -> Observable<QRCodeLoginRoute> {
         avFoundation.authorizationStatus
-            .subscribe(onSuccess: { [weak self] status in
-                switch status {
+            .asObservable()
+            .flatMap({ authorizationStatus -> Observable<QRCodeLoginRoute> in
+                switch authorizationStatus {
                 case .notDetermined:
-                    self?.requestAccess()
-
-                case .authorized:
-                    self?.routeSubject.on(.next(QRCodeLoginRoute.showQRCodeReader))
-
+                    return self.requestAccess()
                 case .restricted, .denied:
-                    self?.routeSubject.on(.next(QRCodeLoginRoute.alertCameraAccessNeeded))
-
+                    return Observable.just(.alertCameraAccessNeeded)
+                case .authorized:
+                    return Observable.just(.showQRCodeReader)
+                @unknown default:
+                    assertionFailure("AVCaptureDevice.authorizationStatus is not available on this version of OS.")
                 }
             })
-            .disposed(by: disposeBag)
     }
 
-    private func requestAccess() {
+    private func requestAccess() -> Observable<QRCodeLoginRoute> {
         self.avFoundation.requestAccess
-            .subscribe(onSuccess: { [weak self] status in
+            .asObservable()
+            .map { status -> QRCodeLoginRoute in
                 if status {
-                    self?.routeSubject.on(.next(QRCodeLoginRoute.showQRCodeReader))
+                    return .showQRCodeReader
                 } else {
-                    self?.routeSubject.on(.next(QRCodeLoginRoute.alertCameraAccessNeeded))
+                    return .alertCameraAccessNeeded
                 }
-            })
-            .disposed(by: self.disposeBag)
+        }
     }
-
 }

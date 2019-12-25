@@ -18,5 +18,5 @@ enum QRCodeLoginRoute {
 }
 
 protocol QRCodeLoginViewModelProtocol {
-    func transformInput(linkButtonTaps taps: Observable<Void>, token: Observable<String>) -> Driver<QRCodeLoginRoute>
+    func transformInput(linkButtonTaps taps: Observable<Void>, token: Observable<String>) -> Observable<QRCodeLoginRoute>
 }
