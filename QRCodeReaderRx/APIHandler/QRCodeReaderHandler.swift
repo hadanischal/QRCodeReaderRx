@@ -20,7 +20,9 @@ class QRCodeReaderHandler: QRCodeReaderHandlerProtocol {
 
     func upload(withToken token: String) -> Completable {
         ///TODO: api handell
-        return Completable.empty()
+        return Observable.just(())
+            .delay(.seconds(5), scheduler: MainScheduler.instance)
+            .ignoreElements()
     }
 
 }

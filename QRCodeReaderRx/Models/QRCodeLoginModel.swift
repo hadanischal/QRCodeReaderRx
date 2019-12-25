@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol QRCodeLoginModelProtocol {
-    func login(withToken token: String) -> Completable
+    func login(withToken token: String) -> Observable<String>
 }
 
 final class QRCodeLoginModel: QRCodeLoginModelProtocol {
@@ -19,7 +19,8 @@ final class QRCodeLoginModel: QRCodeLoginModelProtocol {
     init(withHandler serverHandler: QRCodeReaderHandlerProtocol = QRCodeReaderHandler()) {
         self.serverHandler = serverHandler
     }
-    func login(withToken token: String) -> Completable {
+    func login(withToken token: String) -> Observable<String> {
         return serverHandler.upload(withToken: token)
+            .andThen(Observable.just("Mock"))
     }
 }

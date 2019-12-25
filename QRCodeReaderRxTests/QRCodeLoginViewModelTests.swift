@@ -31,7 +31,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
 
                 mockModel =  MockQRCodeLoginModelProtocol()
                 stub(mockModel, block: { (stub) in
-                    when(stub.login(withToken: any())).thenReturn(Completable.empty())
+                    when(stub.login(withToken: any())).thenReturn(Observable.empty())
                 })
 
                 mockAVFoundation = MockAVFoundationHelperProtocolRx()
@@ -53,7 +53,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                 var noTokenInput: Observable<String>!
 
                 beforeEach {
-                    tapInput = testScheduler.createColdObservable([Recorded.next(300, ())]).asObservable()
+                    tapInput = testScheduler.createColdObservable([Recorded.next(200, ())]).asObservable()
                     noTokenInput = testScheduler.createColdObservable([]).asObservable()
                 }
 
@@ -68,7 +68,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                         let testObservable = testViewModel.transformInput(linkButtonTaps: tapInput, token: noTokenInput).asObservable()
                         let res = testScheduler.start { testObservable }
                         expect(res.events.count).to(equal(1))
-                        let correctResult = [Recorded.next(320, QRCodeLoginRoute.showQRCodeReader)]
+                        let correctResult = [Recorded.next(420, QRCodeLoginRoute.showQRCodeReader)]
                         XCTAssertEqual(res.events, correctResult)
                     })
                 })
@@ -85,7 +85,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                         let testObservable = testViewModel.transformInput(linkButtonTaps: tapInput, token: noTokenInput).asObservable()
                         let res = testScheduler.start { testObservable }
                         expect(res.events.count).to(equal(1))
-                        let correctResult = [Recorded.next(320, QRCodeLoginRoute.alertCameraAccessNeeded)]
+                        let correctResult = [Recorded.next(420, QRCodeLoginRoute.alertCameraAccessNeeded)]
                         XCTAssertEqual(res.events, correctResult)
                     })
                 })
@@ -101,7 +101,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                         let testObservable = testViewModel.transformInput(linkButtonTaps: tapInput, token: noTokenInput).asObservable()
                         let res = testScheduler.start { testObservable }
                         expect(res.events.count).to(equal(1))
-                        let correctResult = [Recorded.next(320, QRCodeLoginRoute.alertCameraAccessNeeded)]
+                        let correctResult = [Recorded.next(420, QRCodeLoginRoute.alertCameraAccessNeeded)]
                         XCTAssertEqual(res.events, correctResult)
                     })
                 })
@@ -122,7 +122,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                             let res = testScheduler.start { testObservable }
                             verify(mockAVFoundation).requestAccess.get()
                             expect(res.events.count).to(equal(1))
-                            let correctResult = [Recorded.next(340, QRCodeLoginRoute.showQRCodeReader)]
+                            let correctResult = [Recorded.next(440, QRCodeLoginRoute.showQRCodeReader)]
                             XCTAssertEqual(res.events, correctResult)
                         })
                     })
@@ -142,7 +142,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                             let res = testScheduler.start { testObservable }
                             verify(mockAVFoundation).requestAccess.get()
                             expect(res.events.count).to(equal(1))
-                            let correctResult = [Recorded.next(340, QRCodeLoginRoute.alertCameraAccessNeeded)]
+                            let correctResult = [Recorded.next(440, QRCodeLoginRoute.alertCameraAccessNeeded)]
                             XCTAssertEqual(res.events, correctResult)
                         })
                     })
@@ -157,13 +157,13 @@ class QRCodeLoginViewModelTests: QuickSpec {
 
                 beforeEach {
                     notapInput = testScheduler.createColdObservable([]).asObservable()
-                    tokenInput = testScheduler.createColdObservable([Recorded.next(300, "testToken")]).asObservable()
+                    tokenInput = testScheduler.createColdObservable([Recorded.next(200, "testToken")]).asObservable()
                 }
 
                 describe("when a link is successfuly requested", {
                     beforeEach {
                         stub(mockModel, block: { (stub) in
-                            when(stub.login(withToken: any())).thenReturn(Completable.empty())
+                            when(stub.login(withToken: any())).thenReturn(Observable.just("Mock Token"))
                         })
                     }
 
@@ -172,8 +172,8 @@ class QRCodeLoginViewModelTests: QuickSpec {
                         let res = testScheduler.start { testObservable }
                         verify(mockModel).login(withToken: any())
                         expect(res.events.count).to(equal(2))
-                        let correctResult = [Recorded.next(300, QRCodeLoginRoute.displaySpinner),
-                                             Recorded.next(300, QRCodeLoginRoute.linkComplete)]
+                        let correctResult = [Recorded.next(400, QRCodeLoginRoute.displaySpinner),
+                                             Recorded.next(400, QRCodeLoginRoute.linkComplete)]
                         XCTAssertEqual(res.events, correctResult)
                     })
 
@@ -188,7 +188,7 @@ class QRCodeLoginViewModelTests: QuickSpec {
                 describe("when a link request fails", {
                     beforeEach {
                         stub(mockModel, block: { (stub) in
-                            when(stub.login(withToken: any())).thenReturn(Completable.error(RxError.unknown))
+                            when(stub.login(withToken: any())).thenReturn(Observable.error(RxError.unknown))
                         })
                     }
 
@@ -197,8 +197,8 @@ class QRCodeLoginViewModelTests: QuickSpec {
                         let res = testScheduler.start { testObservable }
                         verify(mockModel).login(withToken: any())
                         expect(res.events.count).to(equal(2))
-                        let correctResult = [Recorded.next(300, QRCodeLoginRoute.displaySpinner),
-                                             Recorded.next(300, QRCodeLoginRoute.failedLinkedAlert)]
+                        let correctResult = [Recorded.next(400, QRCodeLoginRoute.displaySpinner),
+                                             Recorded.next(400, QRCodeLoginRoute.failedLinkedAlert)]
                         XCTAssertEqual(res.events, correctResult)
                     })
 
