@@ -11,6 +11,7 @@ target 'QRCodeReaderRx' do
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   pod 'AVFoundationHelperRx', '~> 0.4'
+  pod 'PKHUD', '~> 5.0'
 
   target 'QRCodeReaderRxTests' do
     inherit! :search_paths
