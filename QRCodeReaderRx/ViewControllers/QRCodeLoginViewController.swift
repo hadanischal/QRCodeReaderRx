@@ -12,6 +12,7 @@ import RxCocoa
 import AVFoundation
 import QRCodeReader
 import WebKit
+import PKHUD
 
 class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDelegate {
 
@@ -57,22 +58,20 @@ class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDel
     }
 
     func setupViewModel() {
-
         let taps = btnScan.rx.tap.asObservable()
         var token: Observable<String> {
             return tokenSubject.asObservable()
         }
 
         viewModel.transformInput(linkButtonTaps: taps, token: token)
+            .asDriver(onErrorJustReturn: .failedLinkedAlert)
             .drive(onNext: { [weak self] result in
                 self?.navigate(withRoute: result)
             })
             .disposed(by: disposeBag)
-
     }
 
     // MARK: - Navigation
-
     private func navigate(withRoute route: QRCodeLoginRoute) {
         switch route {
         case .showQRCodeReader:
@@ -114,36 +113,45 @@ class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDel
     func readerDidCancel(_ reader: QRCodeReaderViewController) {
         reader.stopScanning()
         dismiss(animated: true, completion: nil)
+        self.tokenSubject.onNext("Mock token")
+
     }
 
     // MARK: - Alert Camera Access Needed
-    // TODO: Manage Alert properly
 
     private func alertCameraAccessNeeded() {
-        let settingsAppURL = URL(string: UIApplication.openSettingsURLString)!
         let appName = Bundle.main.displayName ?? "This app"
-        self.alert(title: "This feature requires Camera Access",
-                   message: "In iPhone settings, tap \(appName) and turn on Camera access to scan QRCode",
-                   actions: [AlertAction(title: "Settings", type: 0, style: .default),
-                             AlertAction(title: "Cancel", type: 1, style: .destructive)],
-                   vc: self).observeOn(MainScheduler.instance)
-            .subscribe(onNext: { index in
-                print ("index: \(index)")
-                if index == 0 {
-                    UIApplication.shared.open(settingsAppURL)
-                }
-                self.dismiss(animated: true)
-            }).disposed(by: disposeBag)
+
+        let alert = UIAlertController(title: "This feature requires Camera Access",
+                                      message: "In iPhone settings, tap \(appName) and turn on Camera access to scan QRCode",
+            preferredStyle: UIAlertController.Style.alert)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { [weak self] (_: UIAlertAction) in
+            self?.goToSettings()
+        }
+
+        alert.addAction(cancelAction)
+        alert.addAction(settingsAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    // MARK: - Go To Device Settings
+    private func goToSettings() {
+        let settingsAppURL = URL(string: UIApplication.openSettingsURLString)!
+        UIApplication.shared.open(settingsAppURL)
     }
 
     // MARK: - Linking Failed
     private func linkingFailed() {
+        HUD.hide()
         //self.ceaseSpinning
-            self.showAlertView(withTitle: "Linking Failed", andMessage: "Completed with an error linking Failed")
-     }
+        self.showAlertView(withTitle: "Linking Failed", andMessage: "Completed with an error linking Failed")
+    }
 
     // MARK: - Linking Succeed
     private func linkingSucceed() {
+        HUD.hide()
         // TODO: ceaseSpinning
         // TODO: push to new view
     }
@@ -151,6 +159,8 @@ class QRCodeLoginViewController: UIViewController, QRCodeReaderViewControllerDel
     // MARK: - Handling server interactions. Spinners and screen disablement
     private func displaySpinner() {
         // TODO: displaySpinner
+        HUD.show(.progress)
+
     }
 
     private func setAccessibilityIdentifier() {
